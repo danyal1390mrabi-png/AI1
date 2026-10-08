@@ -97,7 +97,7 @@ img.gen{max-width:100%;border-radius:14px;margin:6px 0}
   <header><button id="menu">☰</button><b>دانیال کد</b></header>
   <div id="chat"><div class="wrap" id="msgs"></div></div>
   <div id="composer">
-    <div class="modes"><button data-m="chat" class="on">💬 گفتگو</button><button data-m="research">🔎 تحقیق</button><button data-m="image">🎨 ساخت تصویر</button></div>
+    <div class="modes"><button data-m="auto" class="on">✨ خودکار</button><button data-m="chat">💬 فقط گفتگو</button><button data-m="research">🔎 تحقیق</button><button data-m="image">🎨 ساخت تصویر</button></div>
     <div id="chip"><span id="cn"></span><button id="cx">✕</button></div>
     <div class="box">
       <button id="send" title="ارسال">➤</button>
@@ -172,10 +172,10 @@ function addMsg(role,text){
 function scrollEnd(){chatEl.scrollTop=chatEl.scrollHeight}
 function setBusy(b){busy=b;sendBtn.textContent=b?'■':'➤';sendBtn.disabled=false}
 
-let mode='chat',attached=null;
+let mode='auto',attached=null;
 const J={'Content-Type':'application/json'};
 const hist=c=>c.msgs.map(m=>({role:m.role,content:m.content}));
-function setMode(m){mode=m;document.querySelectorAll('.modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));inp.placeholder=m==='image'?'تصویر مورد نظرت را توصیف کن...':m==='research'?'موضوع تحقیق را بنویس...':'از دانیال کد بپرس...'}
+function setMode(m){mode=m;document.querySelectorAll('.modes button').forEach(b=>b.classList.toggle('on',b.dataset.m===m));inp.placeholder=m==='image'?'تصویر مورد نظرت را توصیف کن...':m==='research'?'موضوع تحقیق را بنویس...':m==='auto'?'هر چیزی بخواه؛ خودم تصمیم می‌گیرم (چت، تحقیق یا عکس)...':'از دانیال کد بپرس...'}
 function clearAttach(){attached=null;$('#chip').style.display='none';$('#fi').value=''}
 
 async function ask(c,aiEl,o={}){
@@ -206,8 +206,15 @@ async function ask(c,aiEl,o={}){
       full=typeof j.response==='string'?j.response:JSON.stringify(j.response);
       body.innerHTML=md(full);
     }else{
-      const r=await fetch(API_URL,{method:'POST',headers:J,signal:sig,body:JSON.stringify({action:'chat',stream:true,messages:[{role:'system',content:SYSTEM},...hist(c)]})});
+      const r=await fetch(API_URL,{method:'POST',headers:J,signal:sig,body:JSON.stringify({action:'chat',stream:true,noauto:o.mode==='chat',messages:[{role:'system',content:SYSTEM},...hist(c)]})});
       if(!r.ok){const j=await r.json().catch(()=>({}));throw new Error(j.error||'HTTP '+r.status)}
+      if((r.headers.get('content-type')||'').includes('application/json')){
+        // حالت خودکار: Worker تصمیم گرفته تصویر بسازد (یا پاسخ JSON داده)
+        const j=await r.json().catch(()=>({}));
+        if(j.dataURI){body.innerHTML='<img class="gen" alt="">';body.firstChild.src=j.dataURI;full='🎨 تصویر ساخته شد'+(j.prompt_used?': '+j.prompt_used:'')}
+        else if(j.response){full=j.response;body.innerHTML=md(full)}
+        else throw new Error(j.error||'پاسخ خالی');
+      }else{
       const rd=r.body.getReader(),dec=new TextDecoder();let buf='';
       while(true){
         const {done,value}=await rd.read();if(done)break;
@@ -220,6 +227,7 @@ async function ask(c,aiEl,o={}){
         body.innerHTML=md(full);scrollEnd();
       }
       if(!full)throw new Error('پاسخ خالی');
+      }
     }
   }catch(e){
     if(e.name==='AbortError'){body.innerHTML=full?md(full):'<i>متوقف شد.</i>'}
@@ -231,8 +239,8 @@ async function ask(c,aiEl,o={}){
 async function send(){
   if(busy){ctrl&&ctrl.abort();return}
   const t=inp.value.trim(),m=mode,a=attached;
-  if(!t&&!a)return;if(m!=='chat'&&!t)return;
-  inp.value='';inp.style.height='auto';clearAttach();setMode('chat');
+  if(!t&&!a)return;if(m!=='chat'&&m!=='auto'&&!t)return;
+  inp.value='';inp.style.height='auto';clearAttach();setMode('auto');
   let c=chats.find(x=>x.id===cur);
   if(!c){c={id:Date.now(),title:(t||a.name).slice(0,40),msgs:[]};chats.unshift(c);cur=c.id;msgsEl.innerHTML='';renderList()}
   const shown=(a?'📎 '+a.name+'\n':'')+t;
