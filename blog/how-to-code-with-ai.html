@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>چگونه با هوش مصنوعی کد بزنیم؟ راهنمای عملی برای شروع | دانیال کد</title>
+<meta name="description" content="یاد بگیرید چطور درخواست‌های دقیق بنویسید، کد تولیدشده را بررسی کنید و از هوش مصنوعی فارسی برای نوشتن و رفع خطای کد استفاده کنید.">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://danyalcode.ir/blog/how-to-code-with-ai.html">
+<link rel="icon" type="image/png" href="../icons/icon-192.png">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="دانیال کد">
+<meta property="og:locale" content="fa_IR">
+<meta property="og:url" content="https://danyalcode.ir/blog/how-to-code-with-ai.html">
+<meta property="og:title" content="چگونه با هوش مصنوعی کد بزنیم؟ راهنمای عملی برای شروع">
+<meta property="og:description" content="یاد بگیرید چطور درخواست‌های دقیق بنویسید، کد تولیدشده را بررسی کنید و از هوش مصنوعی فارسی برای نوشتن و رفع خطای کد استفاده کنید.">
+<meta property="og:image" content="https://danyalcode.ir/icons/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700&display=swap" rel="stylesheet">
+<style>*{box-sizing:border-box;margin:0}
+:root{--bg:#0c1833;--card:#12234a;--text:#eaf0ff;--mut:#9fb0d6;--line:#25396b;--acc:#2bb8ff}
+body{font-family:Vazirmatn,Tahoma,sans-serif;background:var(--bg);color:var(--text);line-height:2.05;padding:0 16px 48px}
+.top{max-width:760px;margin:0 auto;display:flex;align-items:center;gap:10px;padding:18px 0;border-bottom:1px solid var(--line)}
+.top img{width:38px;height:38px;border-radius:11px}
+.top a{color:var(--text);text-decoration:none;font-weight:700}
+.top .cta{margin-right:auto;background:var(--acc);color:#04142e;padding:6px 16px;border-radius:12px;font-size:14px}
+main{max-width:760px;margin:0 auto;padding-top:28px}
+h1{font-size:28px;line-height:1.6;margin-bottom:8px}
+h2{font-size:20px;margin:28px 0 6px;color:var(--acc)}
+p,li{color:#d6e0fa}
+p{margin:8px 0}ul,ol{padding-right:24px;margin:8px 0}
+.meta{color:var(--mut);font-size:13px;margin-bottom:18px}
+a{color:var(--acc)}
+pre{direction:ltr;text-align:left;background:#07101f;border-radius:12px;padding:14px;overflow:auto;margin:12px 0;font-size:13.5px;line-height:1.7}
+code{font-family:Consolas,monospace}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px;margin:14px 0;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--acc)}.card b{display:block;margin-bottom:2px}.card span{color:var(--mut);font-size:14px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;margin:28px 0;text-align:center}
+.box a.btn{display:inline-block;margin-top:8px;background:var(--acc);color:#04142e;padding:8px 22px;border-radius:12px;text-decoration:none;font-weight:700}
+footer{max-width:760px;margin:36px auto 0;color:var(--mut);font-size:13px;text-align:center}</style>
+<script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "Article",
+   "headline": "چگونه با هوش مصنوعی کد بزنیم؟ راهنمای عملی برای شروع",
+   "description": "یاد بگیرید چطور درخواست‌های دقیق بنویسید، کد تولیدشده را بررسی کنید و از هوش مصنوعی فارسی برای نوشتن و رفع خطای کد استفاده کنید.",
+   "inLanguage": "fa",
+   "datePublished": "2026-10-09",
+   "dateModified": "2026-10-09",
+   "mainEntityOfPage": "https://danyalcode.ir/blog/how-to-code-with-ai.html",
+   "image": "https://danyalcode.ir/icons/og-image.jpg",
+   "author": {
+    "@type": "Organization",
+    "name": "دانیال کد"
+   },
+   "publisher": {
+    "@type": "Organization",
+    "name": "دانیال کد",
+    "logo": {
+     "@type": "ImageObject",
+     "url": "https://danyalcode.ir/icons/icon-512.png"
+    }
+   }
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "دانیال کد",
+     "item": "https://danyalcode.ir/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "مقالات",
+     "item": "https://danyalcode.ir/blog/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 3,
+     "name": "چگونه با هوش مصنوعی کد بزنیم؟ راهنمای عملی برای شروع",
+     "item": "https://danyalcode.ir/blog/how-to-code-with-ai.html"
+    }
+   ]
+  }
+ ]
+}
+</script>
+</head>
+<body>
+<div class="top"><img src="../icons/icon-192.png" alt="لوگوی دانیال کد"><a href="../">دانیال کد</a><a href="./">مقالات</a><a class="cta" href="../">شروع گفتگو</a></div>
+<main>
+<h1>چگونه با هوش مصنوعی کد بزنیم؟</h1>
+<p class="meta">راهنمای عملی برای شروع — ۱۷ مهر ۱۴۰۵</p>
+<p>دستیار هوش مصنوعی می‌تواند سرعت کدنویسی را بالا ببرد، به شرطی که درست از آن استفاده کنید. در این مقاله چند اصل ساده را مرور می‌کنیم که نتیجه‌ی کار با چت‌بات را بهتر می‌کند.</p>
+
+<h2>۱. درخواست را دقیق بنویسید</h2>
+<p>جمله‌ی «یک سایت بساز» جواب مبهم می‌دهد. بهتر است زبان یا فناوری، هدف و محدودیت‌ها را بگویید:</p>
+<pre><code>یک صفحه لندینگ فارسی (RTL) با HTML و CSS بنویس.
+شامل: هدر، بخش ویژگی‌ها، فرم تماس و فوتر.
+بدون کتابخانه‌ی خارجی و واکنش‌گرا برای موبایل.</code></pre>
+
+<h2>۲. پروژه را مرحله‌به‌مرحله جلو ببرید</h2>
+<p>به‌جای درخواست یک برنامه‌ی کامل در یک پیام، اول ساختار را بگیرید، بعد هر بخش را جدا بسازید و اصلاح کنید. یافتن خطا در تکه‌های کوچک راحت‌تر است.</p>
+
+<h2>۳. برای رفع خطا، متن کامل خطا را بدهید</h2>
+<p>پیام خطا، کدی که خطا می‌دهد و آنچه انتظار داشتید رخ دهد را کنار هم بفرستید. توضیح «کار نمی‌کند» به‌تنهایی کافی نیست.</p>
+
+<h2>۴. کد را همیشه خودتان اجرا و بررسی کنید</h2>
+<p>هوش مصنوعی ممکن است اشتباه کند یا از تابعی استفاده کند که وجود ندارد. کد را اجرا کنید، تست بنویسید و بخش‌های حساس مثل احراز هویت و پرداخت را با دقت بخوانید.</p>
+
+<h2>۵. از آن برای یادگیری هم استفاده کنید</h2>
+<p>بخواهید کد را خط‌به‌خط توضیح دهد یا یک مفهوم را با مثال ساده بگوید. مقاله‌ی <a href="let-const-var-javascript.html">تفاوت let و const و var در جاوااسکریپت</a> نمونه‌ای از همین نوع توضیح است.</p>
+
+<h2>۶. اطلاعات حساس را وارد نکنید</h2>
+<p>کلیدهای API، رمزهای عبور و داده‌ی شخصی کاربران را داخل گفتگو نچسبانید.</p>
+<div class="box"><b>همین حالا با دانیال کد امتحان کنید</b><br><a class="btn" href="../">ورود به چت‌بات</a></div>
+</main>
+<footer>© دانیال کد — دستیار هوش مصنوعی فارسی</footer>
+</body>
+</html>
